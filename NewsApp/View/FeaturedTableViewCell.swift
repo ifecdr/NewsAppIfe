@@ -13,19 +13,21 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewer: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
-    //    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+    
+    let viewModel = ViewModel()
+ 
+    static let identifier = "table"
 
     func Configure(article : Article) {
+        titleLabel.text = article.title
+        descLabel.text = article.description
         
+//        guard let imageUrl = article.urlToImage else {
+//            return
+//        }
+        viewModel.getimage(article.urlToImage) { image in
+            self.imageViewer.image = UIImage(data: image!)
+        }
     }
     
 }

@@ -10,4 +10,10 @@ import UIKit
 
 class FeaturedCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var collectionButton: UIButton!
+    
+    func configure(countryLabel: String) {
+        self.collectionButton.titleLabel?.text = countryLabel
+        self.collectionButton.frame.size.width = CGFloat(integerLiteral: countryLabel.count * 10)
+    }
 }

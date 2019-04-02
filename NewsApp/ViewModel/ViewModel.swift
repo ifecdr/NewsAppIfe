@@ -41,4 +41,13 @@ class ViewModel {
         }
     }
     
+    //Get image from the service with string
+    func getimage(_ imageUrl: String, _ completion: @escaping (Data?)->() ) {
+        
+        let imageCompletion: (Data?) -> () =  { (d) in
+            completion(d)
+        }
+        ImageDownloadService.shared.dowanloadImage(imageUrl, imageCompletion)
+    }
+    
 }

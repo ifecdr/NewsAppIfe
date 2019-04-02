@@ -26,7 +26,9 @@ class FeaturedViewController: UIViewController {
 }
 
 extension FeaturedViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 67 : 320
+    }
 }
 
 extension FeaturedViewController: UITableViewDataSource {
@@ -39,7 +41,17 @@ extension FeaturedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        //create a cell from the tablecell class and configure with an index of data in the viewModel
+        let cell = tableView.dequeueReusableCell(withIdentifier: FeaturedTableViewCell.identifier, for: indexPath) as! FeaturedTableViewCell
+        switch indexPath.section {
+        case 0:
+            //TODO: cell for collection table
+            break
+        default:
+            cell.Configure(article: viewModel.articleHeadlines[indexPath.row])
+        }
+        
+        return cell
     }
     
     
