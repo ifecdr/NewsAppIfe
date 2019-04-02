@@ -25,7 +25,7 @@ struct NewsAPI {
     static let domainParam = "domains="
     static let sortByParam = "sortBy="
     
-    static let key = "&apiKey=d6de66301f64417db1d972572d0d93ac"
+    static let key = "&apiKey="
     
     //create url for headlines
     static func getHeadlinesURL(country: String) -> String {
