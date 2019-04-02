@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
@@ -14,6 +15,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
     
     var slide: [Slide] = []
     
@@ -25,42 +28,120 @@ class LoginViewController: UIViewController {
         slide = createSlides()
         setupSlideScrollView(slides: slide)
         
+        editButtons()
+    }
+    
+    func editButtons() {
+        
+        registerButton.layer.cornerRadius = registerButton.layer.frame.height / 2
+        signInButton.layer.cornerRadius = signInButton.layer.frame.height / 2
+        
+        signInButton.layer.borderColor = UIColor.lightGray.cgColor
+        signInButton.layer.borderWidth = 1.5
         
     }
 
     @IBAction func prevAction(_ sender: UIButton) {
+        if pageControl.currentPage >= 0 {
+            pageControl.currentPage -= 1
+            let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
+            scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+            scrollView.layoutIfNeeded()
+            
+        } else { return }
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
+        if pageControl.currentPage <= slide.count - 1 {
+            //increase current page by 1
+            pageControl.currentPage += 1
+            //find the x by using the current page times width of scroll view
+            let x = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
+            //offset our scroll view by our x
+            scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
+            //layout sub views immediatley IF changes are pending
+            scrollView.layoutIfNeeded()
+            //If the current page is not less than or equal to 2, do nothing
+        } else { return }
     }
     
+    //prepare for segue
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier = "second"
+//    }
+    
     @IBAction func registerAction(_ sender: UIButton) {
+        guard let userName = username.text, let userPass = password.text, username.hasText, password.hasText else {
+            self.showAlert(title: "Error :( ", message: "Invalid Username or Password")
+            print("Could Not Verify User Details")
+            return
+        }
+        
+        //create a new user and add the user to the firebase auth
+        Auth.auth().createUser(withEmail: userName, password: userPass) { (result, error) in
+            
+            if let e = error {
+                
+                self.showAlert(title: "Sorry :( ", message: "\(e.localizedDescription)")
+                
+                print("Could Not Create User: \(e.localizedDescription)")
+            }
+            
+            if let _ = result {
+                print("Account Created")
+                //self.goToHome()
+                
+            }
+        }
     }
     
     @IBAction func signInAction(_ sender: UIButton) {
+        guard let userName = username.text, let userPass = password.text, username.hasText, password.hasText else {
+            self.showAlert(title: "Error :( ", message: "Invalid Username or Password")
+            print("Could Not Verify User Details")
+            return
+        }
+        
+        //authenticate the user
+        Auth.auth().signIn(withEmail: userName, password: userPass) { (result, error) in
+            
+            if let e = error {
+                self.showAlert(title: "Sorry :( ", message: "\(e.localizedDescription)")
+                print("Could Not Sign In User: \(e.localizedDescription)")
+            }
+            
+            if let _ = result {
+                print("SignIn successful")
+                //self.goToHome()
+                self.performSegue(withIdentifier: "second", sender: self)
+            }
+        }
     }
     
     
     func setupSlideScrollView(slides: [Slide]) {
-        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 360)
-        scrollView.contentSize = CGSize(width: view.frame.width, height: 360)
+        //scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: scrollView.frame.size.height)
+        scrollView.contentSize = CGSize(width: view.frame.size.width * CGFloat(slides.count) , height: scrollView.frame.size.height)
         scrollView.isPagingEnabled = true
         
         for i in 0..<slides.count {
-            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: 360)
+            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.size.width, height: scrollView.frame.size.height)
             scrollView.addSubview(slides[i])
         }
     }
-    
+    //TODO: Check for new Images
     func createSlides() -> [Slide] {
         let slide1: Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide1.imageViewer.image = UIImage(named: "news1")
+        //slide1.imageViewer.contentMode = .center
         
         let slide2: Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide1.imageViewer.image = UIImage(named: "news2")
+        slide2.imageViewer.image = UIImage(named: "news2")
+        //slide2.imageViewer.contentMode = .center
         
         let slide3: Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide3.imageViewer.image = UIImage(named: "news3")
+        //slide3.imageViewer.contentMode = .scaleAspectFill
         
         return [slide1, slide2, slide3]
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="SpashViewController" id="BYZ-38-t0r" customClass="SpashViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -30,24 +30,23 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="2gA-gj-IGG" customClass="LoginViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v4C-ap-zhA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7M-he-2Wz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="644"/>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="voI-fG-MjG">
-                                <rect key="frame" x="20" y="568" width="335" height="168"/>
+                                <rect key="frame" x="20" y="652" width="374" height="168"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="115" translatesAutoresizingMaskIntoConstraints="NO" id="0zo-m2-GPG">
-                                        <rect key="frame" x="1.6666666666666572" y="0.0" width="332" height="37"/>
+                                        <rect key="frame" x="21" y="0.0" width="332" height="37"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLD-xv-BCh">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="37"/>
                                                 <state key="normal" title="Prev"/>
                                                 <connections>
                                                     <action selector="prevAction:" destination="2gA-gj-IGG" eventType="touchUpInside" id="agn-Fg-QiW"/>
-                                                    <action selector="registerAction:" destination="2gA-gj-IGG" eventType="touchUpInside" id="0hY-c3-GK4"/>
                                                 </connections>
                                             </button>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="v45-Fj-4EJ">
@@ -65,7 +64,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pNp-nM-1TG">
-                                        <rect key="frame" x="17.666666666666657" y="47" width="300" height="74"/>
+                                        <rect key="frame" x="37" y="47" width="300" height="74"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q4T-2A-EQe">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="32"/>
@@ -88,7 +87,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="PuE-F4-Tcp">
-                                        <rect key="frame" x="31.666666666666657" y="131" width="272" height="37"/>
+                                        <rect key="frame" x="51" y="131" width="272" height="37"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K38-re-Ydt">
                                                 <rect key="frame" x="0.0" y="0.0" width="107" height="37"/>
@@ -137,13 +136,24 @@
                     <connections>
                         <outlet property="pageControl" destination="v45-Fj-4EJ" id="wX0-x2-X7L"/>
                         <outlet property="password" destination="2wq-82-FTl" id="ldm-vi-9HI"/>
+                        <outlet property="registerButton" destination="K38-re-Ydt" id="QC5-dF-km5"/>
                         <outlet property="scrollView" destination="P7M-he-2Wz" id="UKO-M1-o8J"/>
+                        <outlet property="signInButton" destination="Qe5-Xi-3Qf" id="vSd-9b-XBX"/>
                         <outlet property="username" destination="Q4T-2A-EQe" id="i5X-rf-mRj"/>
+                        <segue destination="PDW-JA-1rv" kind="show" identifier="second" id="4Xo-Gu-9qr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dR-Pm-zMW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="18"/>
+            <point key="canvasLocation" x="967" y="9"/>
+        </scene>
+        <!--Second-->
+        <scene sceneID="WMs-rI-rKs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Second" id="PDW-JA-1rv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hia-kr-gx1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="9"/>
         </scene>
     </scenes>
 </document>

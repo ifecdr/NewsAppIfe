@@ -13,8 +13,17 @@ protocol ViewModelDelegate: class {
 }
 
 class ViewModel {
-    var articleHeadlines = [Article]()
-    var articleEverything = [Article]()
+    //create variable and call delegate after the variable is initialized to update view
+    var articleHeadlines = [Article]() {
+        didSet {
+            delegate?.updateView()
+        }
+    }
+    var articleEverything = [Article]() {
+        didSet {
+            delegate?.updateView()
+        }
+    }
     
     weak var delegate: ViewModelDelegate?
     

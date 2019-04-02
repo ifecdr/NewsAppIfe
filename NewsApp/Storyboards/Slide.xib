@@ -16,18 +16,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ac7-GV-49n">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ac7-GV-49n">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="559" id="IYb-oa-wFp"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ac7-GV-49n" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="8ep-54-DOF"/>
+                <constraint firstItem="ac7-GV-49n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="RdZ-s8-pAB"/>
+                <constraint firstItem="ac7-GV-49n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qA8-Vd-VQ3"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="imageViewer" destination="ac7-GV-49n" id="4hI-Ts-ek8"/>
             </connections>
-            <point key="canvasLocation" x="50" y="-53"/>
+            <point key="canvasLocation" x="48.799999999999997" y="-53.571428571428577"/>
         </view>
     </objects>
 </document>
