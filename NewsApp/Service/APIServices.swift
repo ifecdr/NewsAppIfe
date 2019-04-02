@@ -24,8 +24,9 @@ final class ApiService {
     
     
     //funtiions gets the headlines in the USA
-    func getHeadlines(completion: @escaping ([Article]) -> ()) {
-        let country = "us"
+    func getHeadlines(_ countryCode: String,
+                      completion: @escaping ([Article]) -> ()) {
+        let country = countryCode
         if let url = URL(string: NewsAPI.getHeadlinesURL(country: country)) {
             //array of article
             var articleArray = [Article]()

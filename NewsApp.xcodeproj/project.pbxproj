@@ -131,10 +131,10 @@
 				5DAFC231224EDF1900B9B63F /* SpashViewController.swift */,
 				5DAFC253224FDF6900B9B63F /* LoginViewController.swift */,
 				02D94CA52252B61700BC533C /* FeaturedViewController.swift */,
-				02D94CA72252B6B900BC533C /* SearchViewController.swift */,
-				02D94CA92252B72300BC533C /* ProfileViewController.swift */,
 				02D94CAB2252C21900BC533C /* FeaturedCollectionViewCell.swift */,
 				02D94CAD2252E48E00BC533C /* FeaturedTableViewCell.swift */,
+				02D94CA72252B6B900BC533C /* SearchViewController.swift */,
+				02D94CA92252B72300BC533C /* ProfileViewController.swift */,
 				5DAFC255224FF20800B9B63F /* Slide.swift */,
 			);
 			path = View;

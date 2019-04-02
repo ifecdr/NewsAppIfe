@@ -12,8 +12,12 @@ class FeaturedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionButton: UIButton!
     
+    static let identifier = "featuredCollection"
+    
     func configure(countryLabel: String) {
-        self.collectionButton.titleLabel?.text = countryLabel
-        self.collectionButton.frame.size.width = CGFloat(integerLiteral: countryLabel.count * 10)
+        self.collectionButton.setTitle(countryLabel, for: .normal)
+        //self.collectionButton.frame.size.width = CGFloat(integerLiteral: countryLabel.count * 3)
     }
+    
+    
 }

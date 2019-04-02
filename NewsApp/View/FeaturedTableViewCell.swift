@@ -14,19 +14,23 @@ class FeaturedTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     let viewModel = ViewModel()
  
-    static let identifier = "table"
+    static let identifier = ["table", "table2"]
 
     func Configure(article : Article) {
         titleLabel.text = article.title
         descLabel.text = article.description
         
-//        guard let imageUrl = article.urlToImage else {
-//            return
-//        }
-        viewModel.getimage(article.urlToImage) { image in
-            self.imageViewer.image = UIImage(data: image!)
+        if let imageUrl = article.urlToImage {
+        
+            viewModel.getimage(imageUrl) { image in
+                self.imageViewer.image = UIImage(data: image!)
+            }
+        } else {
+            return
         }
     }
     

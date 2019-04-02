@@ -13,6 +13,10 @@ protocol ViewModelDelegate: class {
 }
 
 class ViewModel {
+    
+    let countries = ["USA", "UAE", "Argentina", "Austria", "Australia", "Belgium", "Bulgaria", "Brazil"]
+    let countryCode = ["us", "ae", "ar", "at", "au", "be", "bg", "br"]
+    
     //create variable and call delegate after the variable is initialized to update view
     var articleHeadlines = [Article]() {
         didSet {
@@ -27,8 +31,8 @@ class ViewModel {
     
     weak var delegate: ViewModelDelegate?
     
-    func getHeadlines() {
-        ApiService.shared.getHeadlines() { [unowned self] article  in
+    func getHeadlines(_ countryCode: String) {
+        ApiService.shared.getHeadlines(countryCode) { [unowned self] article  in
             self.articleHeadlines.removeAll()
             self.articleHeadlines = article
         }
@@ -49,5 +53,6 @@ class ViewModel {
         }
         ImageDownloadService.shared.dowanloadImage(imageUrl, imageCompletion)
     }
+    
     
 }

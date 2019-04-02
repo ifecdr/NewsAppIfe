@@ -19,7 +19,7 @@ class FeaturedViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         viewModel.delegate = self
-        viewModel.getHeadlines()
+        viewModel.getHeadlines(viewModel.countryCode.first!)
     }
     
 
@@ -29,6 +29,10 @@ extension FeaturedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 67 : 320
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.getHeadlines(viewModel.countryCode[indexPath.row])
+    }
 }
 
 extension FeaturedViewController: UITableViewDataSource {
@@ -36,19 +40,21 @@ extension FeaturedViewController: UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let firstSection = viewModel.articleHeadlines.isEmpty ? 0 : 1
+        let firstSection = 1 //viewModel.articleHeadlines.isEmpty ? 0 : 1
         return section == 0 ? firstSection : viewModel.articleHeadlines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //create a cell from the tablecell class and configure with an index of data in the viewModel
-        let cell = tableView.dequeueReusableCell(withIdentifier: FeaturedTableViewCell.identifier, for: indexPath) as! FeaturedTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FeaturedTableViewCell.identifier[indexPath.section], for: indexPath) as! FeaturedTableViewCell
         switch indexPath.section {
         case 0:
-            //TODO: cell for collection table
-            break
-        default:
+            cell.collectionView.reloadData()
+        case 1:
             cell.Configure(article: viewModel.articleHeadlines[indexPath.row])
+            
+        default:
+            break
         }
         
         return cell
@@ -59,20 +65,36 @@ extension FeaturedViewController: UITableViewDataSource {
 
 extension FeaturedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return viewModel.countries.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        // create cell and return for each item in the array
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedCollectionViewCell.identifier, for: indexPath) as! FeaturedCollectionViewCell
+        cell.configure(countryLabel: viewModel.countries[indexPath.row])
+        return cell
+    }
+}
+
+
+extension FeaturedViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 96, height: 50)
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
 
 
 extension FeaturedViewController: ViewModelDelegate {
     func updateView() {
-        <#code#>
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            print("table Views Reloaded")
+        }
     }
     
     
