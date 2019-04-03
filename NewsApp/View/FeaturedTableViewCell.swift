@@ -27,7 +27,11 @@ class FeaturedTableViewCell: UITableViewCell {
         if let imageUrl = article.urlToImage {
         
             viewModel.getimage(imageUrl) { image in
-                self.imageViewer.image = UIImage(data: image!)
+                if image == nil {
+                    self.imageViewer.image = UIImage(named: "news1")
+                } else {
+                    self.imageViewer.image = UIImage(data: image!)
+                }
             }
         } else {
             return

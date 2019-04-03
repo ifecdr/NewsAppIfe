@@ -18,6 +18,7 @@ class FeaturedViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.rowHeight = UITableView.automaticDimension
         viewModel.delegate = self
         viewModel.getHeadlines(viewModel.countryCode.first!)
     }
@@ -27,7 +28,7 @@ class FeaturedViewController: UIViewController {
 
 extension FeaturedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 67 : 320
+        return indexPath.section == 0 ? 50 : 320
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -71,7 +72,7 @@ extension FeaturedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // create cell and return for each item in the array
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedCollectionViewCell.identifier, for: indexPath) as! FeaturedCollectionViewCell
-        cell.configure(countryLabel: viewModel.countries[indexPath.row])
+        cell.configure(countryText: viewModel.countries[indexPath.row])
         return cell
     }
 }

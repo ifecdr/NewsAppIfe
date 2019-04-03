@@ -14,8 +14,8 @@ protocol ViewModelDelegate: class {
 
 class ViewModel {
     
-    let countries = ["USA", "UAE", "Argentina", "Austria", "Australia", "Belgium", "Bulgaria", "Brazil"]
-    let countryCode = ["us", "ae", "ar", "at", "au", "be", "bg", "br"]
+    let countries = ["USA","Canada", "UK", "Ireland", "Australia", "Nigeria", "New Zealand", "South Africa"]
+    let countryCode = ["us", "ca", "gb", "ie", "au", "ng", "nz", "sa"]
     
     //create variable and call delegate after the variable is initialized to update view
     var articleHeadlines = [Article]() {
