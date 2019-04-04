@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02CE911B2256524300BFB038 /* SearchFilteredCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE911A2256524300BFB038 /* SearchFilteredCollectionViewCell.swift */; };
+		02CE911D22567C8700BFB038 /* Third.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02CE911C22567C8700BFB038 /* Third.storyboard */; };
 		02D94CA02252496400BC533C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02D94C9F2252496300BC533C /* GoogleService-Info.plist */; };
 		02D94CA22252536C00BC533C /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D94CA12252536C00BC533C /* ViewControllerExtension.swift */; };
 		02D94CA422525C4800BC533C /* Second.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02D94CA322525C4800BC533C /* Second.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		02CE911A2256524300BFB038 /* SearchFilteredCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilteredCollectionViewCell.swift; sourceTree = "<group>"; };
+		02CE911C22567C8700BFB038 /* Third.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Third.storyboard; sourceTree = "<group>"; };
 		02D94C9F2252496300BC533C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02D94CA12252536C00BC533C /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		02D94CA322525C4800BC533C /* Second.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Second.storyboard; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				5DAFC233224EDF1900B9B63F /* Main.storyboard */,
 				02D94CA322525C4800BC533C /* Second.storyboard */,
+				02CE911C22567C8700BFB038 /* Third.storyboard */,
 				5DAFC238224EDF3600B9B63F /* LaunchScreen.storyboard */,
 				5DAFC257224FF22500B9B63F /* Slide.xib */,
 			);
@@ -256,6 +259,7 @@
 				02D94CA422525C4800BC533C /* Second.storyboard in Resources */,
 				5DAFC23A224EDF3600B9B63F /* LaunchScreen.storyboard in Resources */,
 				5DAFC237224EDF3600B9B63F /* Assets.xcassets in Resources */,
+				02CE911D22567C8700BFB038 /* Third.storyboard in Resources */,
 				02D94CA02252496400BC533C /* GoogleService-Info.plist in Resources */,
 				5DAFC235224EDF1900B9B63F /* Main.storyboard in Resources */,
 				5DAFC258224FF22600B9B63F /* Slide.xib in Resources */,

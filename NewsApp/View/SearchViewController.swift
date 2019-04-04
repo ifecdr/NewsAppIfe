@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     
     let viewModel = ViewModel()
     var searchKeyword = ""
+    var isFilterSearch = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +32,32 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
 }
 extension SearchViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.articleEverything.count
+        switch isFilterSearch {
+        case true:
+            return viewModel.filteredArticle.count
+        case false:
+            return viewModel.articleEverything.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
-        cell.configure(article: viewModel.articleEverything[indexPath.row])
+        switch isFilterSearch {
+        case true:
+            cell.configure(article: viewModel.filteredArticle[indexPath.row])
+        case false:
+            cell.configure(article: viewModel.articleEverything[indexPath.row])
+        }
         return cell
         
     }
@@ -53,6 +68,7 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if self.searchKeyword != "" {
+            self.isFilterSearch = true
             viewModel.getfilteredResult(searchKeyword, viewModel.source[indexPath.row])
         }
     }
@@ -76,6 +92,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchKeyword = searchText.replacingOccurrences(of: " ", with: "+")
         self.searchKeyword = searchKeyword
+        self.isFilterSearch = false
         if !searchKeyword.isEmpty {
             viewModel.getSearchResult(searchKeyword)
         }
