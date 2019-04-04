@@ -83,4 +83,36 @@ final class ApiService {
             }.resume()
         }
     }
+    
+    
+    
+    //funtion for filter searches
+    func getFilteredEverything(_ keyword: String, _param: String, completion: @escaping ([Article]) -> ()) {
+        //get the url
+        if let url = URL(string: NewsAPI.getEverythingURL(searchKeyword: keyword)) {
+            //array of article
+            var articleArray = [Article]()
+            
+            session.dataTask(with: url) { (d, _, e) in
+                //check for errors
+                if let error = e {
+                    print("Error: \(error)")
+                }
+                
+                if let data = d {
+                    do {
+                        let responseData = try JSONDecoder().decode(Result.self, from: data)
+                        
+                        //iterate through the response and add each article to the article array
+                        for article in responseData.articles {
+                            articleArray.append(article)
+                        }
+                        completion(articleArray)
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                }
+                }.resume()
+        }
+    }
 }

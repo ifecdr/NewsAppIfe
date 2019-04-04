@@ -91,6 +91,7 @@ extension FeaturedViewController: UICollectionViewDelegateFlowLayout {
 
 extension FeaturedViewController: ViewModelDelegate {
     func updateView() {
+        
         DispatchQueue.main.async {
             
             self.tableView.reloadData()
