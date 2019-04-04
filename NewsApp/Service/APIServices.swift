@@ -87,9 +87,9 @@ final class ApiService {
     
     
     //funtion for filter searches
-    func getFilteredEverything(_ keyword: String, _param: String, completion: @escaping ([Article]) -> ()) {
+    func getFilteredEverything(_ keyword: String, _ param: String, completion: @escaping ([Article]) -> ()) {
         //get the url
-        if let url = URL(string: NewsAPI.getEverythingURL(searchKeyword: keyword)) {
+        if let url = URL(string: NewsAPI.getFilterEverythingURL(searchKeyword: keyword, source: param)) {
             //array of article
             var articleArray = [Article]()
             

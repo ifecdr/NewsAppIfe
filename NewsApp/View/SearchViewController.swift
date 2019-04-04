@@ -13,8 +13,10 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterControlView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filteredCollection: UICollectionView!
     
     let viewModel = ViewModel()
+    var searchKeyword = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +50,32 @@ extension SearchViewController: UITableViewDataSource {
     
 }
 
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if self.searchKeyword != "" {
+            viewModel.getfilteredResult(searchKeyword, viewModel.source[indexPath.row])
+        }
+    }
+}
+
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.source.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = filteredCollection.dequeueReusableCell(withReuseIdentifier: SearchFilteredCollectionViewCell.identifier, for: indexPath) as! SearchFilteredCollectionViewCell
+        cell.configure(image: viewModel.sourceImg[indexPath.row] )
+        return cell
+    }
+    
+    
+}
+
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchKeyword = searchText.replacingOccurrences(of: " ", with: "+")
-        
+        self.searchKeyword = searchKeyword
         if !searchKeyword.isEmpty {
             viewModel.getSearchResult(searchKeyword)
         }
@@ -67,3 +91,5 @@ extension SearchViewController: ViewModelDelegate {
     }
     
 }
+
+

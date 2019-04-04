@@ -18,14 +18,14 @@ struct NewsAPI {
     
     static let countryParam = "country="
     static let categoryParam = "category="
-    static let sourcesParam = "sources="
+    static let sourcesParam = "&sources="
     static let keywordParam = "q="
     
     ///for everything URL and for filtering purposes
     static let domainParam = "domains="
     static let sortByParam = "sortBy="
     
-    static let key = "&apiKey="
+    static let key = "&apiKey=d6de66301f64417db1d972572d0d93ac"
     
     //create url for headlines
     static func getHeadlinesURL(country: String) -> String {
@@ -36,5 +36,8 @@ struct NewsAPI {
         return base + everything + keywordParam + searchKeyword + key
     }
     
+    static func getFilterEverythingURL(searchKeyword: String, source: String) -> String {
+        return base + everything + keywordParam + searchKeyword + sourcesParam + source + key
+    }
     
 }

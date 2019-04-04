@@ -17,6 +17,9 @@ class ViewModel {
     let countries = ["USA","Canada", "UK", "Ireland", "Australia", "Nigeria", "New Zealand", "South Africa"]
     let countryCode = ["us", "ca", "gb", "ie", "au", "ng", "nz", "sa"]
     
+    //news source for filtering
+    let source = [ "cnn", "abc-news", "bbc-news" , "bloomberg" , "buzzfeed", "espn"]
+    let sourceImg = ["cnnImg", "abcImg", "bbcImg", "BloombergImg", "buzzImg", "espnImg"]
     //create variable and call delegate after the variable is initialized to update view
     var articleHeadlines = [Article]() {
         didSet {
@@ -24,6 +27,12 @@ class ViewModel {
         }
     }
     var articleEverything = [Article]() {
+        didSet {
+            delegate?.updateView()
+        }
+    }
+    
+    var filteredArticle = [Article]() {
         didSet {
             delegate?.updateView()
         }
@@ -42,6 +51,13 @@ class ViewModel {
         ApiService.shared.getEverything(keyword) { [unowned self] article in
             self.articleEverything.removeAll()
             self.articleEverything = article
+        }
+    }
+    
+    func getfilteredResult(_ keyword: String, _ param: String) {
+        ApiService.shared.getFilteredEverything(keyword, param) { [unowned self] article in
+            self.filteredArticle.removeAll()
+            self.filteredArticle = article
         }
     }
     
