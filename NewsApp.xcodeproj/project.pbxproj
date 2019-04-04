@@ -137,7 +137,8 @@
 				02D94CA92252B72300BC533C /* ProfileViewController.swift */,
 				5DAFC255224FF20800B9B63F /* Slide.swift */,
 			);
-			path = View;
+			name = View;
+			path = View.swift;
 			sourceTree = "<group>";
 		};
 		5DAFC243224EDF6E00B9B63F /* ViewModel */ = {
