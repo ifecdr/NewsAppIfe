@@ -20,7 +20,7 @@ class FeaturedTableViewCell: UITableViewCell {
  
     static let identifier = ["table", "table2"]
 
-    func Configure(article : Article) {
+    func configure(article : Article) {
         titleLabel.text = article.title
         descLabel.text = article.description
         

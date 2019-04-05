@@ -147,7 +147,6 @@
                     <navigationItem key="navigationItem" title="Headlines" id="WoB-IA-wjV"/>
                     <connections>
                         <outlet property="tableView" destination="F6v-6d-mLm" id="N6q-ev-913"/>
-                        <segue destination="VUg-L8-e21" kind="show" id="aTa-IJ-DNQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8q-Bq-npM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -300,7 +299,6 @@
                         <outlet property="filteredCollection" destination="X1O-TD-pYw" id="XWA-SR-oBg"/>
                         <outlet property="searchBar" destination="hhb-TT-1YL" id="F6j-VU-2G8"/>
                         <outlet property="tableView" destination="vZJ-3s-Lkf" id="abn-mV-nhI"/>
-                        <segue destination="VUg-L8-e21" kind="show" id="NyE-gp-qAZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQO-xb-bsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,14 +320,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqz-ey-wM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2738" y="79"/>
-        </scene>
-        <!--Third-->
-        <scene sceneID="LZ2-dv-MbU">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Third" id="VUg-L8-e21" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="23y-uR-eJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3533" y="79"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Aqf-lM-61d">
@@ -390,7 +380,4 @@
             <point key="canvasLocation" x="1015.9420289855074" y="413.83928571428572"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="NyE-gp-qAZ"/>
-    </inferredMetricsTieBreakers>
 </document>

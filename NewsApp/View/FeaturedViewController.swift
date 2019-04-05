@@ -13,6 +13,7 @@ class FeaturedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel = ViewModel()
+    var imageReuse: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,15 @@ class FeaturedViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         viewModel.delegate = self
         viewModel.getHeadlines(viewModel.countryCode.first!)
+    }
+    
+    
+    func goToDetail() {
+        
+        let storyboard = UIStoryboard(name: "Third" , bundle: Bundle.main)
+        let mainTC = storyboard.instantiateViewController(withIdentifier: "MainTabController") as! UITabBarController
+        
+        self.present(mainTC, animated: true, completion: nil)
     }
     
 
@@ -33,6 +43,10 @@ extension FeaturedViewController: UITableViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.getHeadlines(viewModel.countryCode[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: DetailViewController.identifier, sender: self)
     }
 }
 
@@ -52,8 +66,8 @@ extension FeaturedViewController: UITableViewDataSource {
         case 0:
             cell.collectionView.reloadData()
         case 1:
-            cell.Configure(article: viewModel.articleHeadlines[indexPath.row])
-            
+            cell.configure(article: viewModel.articleHeadlines[indexPath.row])
+            self.imageReuse = cell.imageViewer.image
         default:
             break
         }
