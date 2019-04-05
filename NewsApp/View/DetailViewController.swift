@@ -24,9 +24,11 @@ class DetailViewController: UIViewController {
     var author: String!
     var published: String!
     var content: String!
-    var image: UIImage!
+    var image: String!
     
-    static let identifier = "featuredDetailSegue"
+    let viewModel = ViewModel()
+    
+    static let identifier = "DetailViewController"
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,20 @@ class DetailViewController: UIViewController {
     }
     
     func setupView() {
-        self.imageViewer.image = image
+        
+        if let imageUrl = image {
+            
+            viewModel.getimage(imageUrl) { image in
+                if image == nil {
+                    self.imageViewer.image = UIImage(named: "news1")
+                } else {
+                    self.imageViewer.image = UIImage(data: image!)
+                }
+            }
+        } else {
+            return
+        }
+        
         self.titleLabel.text = titleText
         self.descLabel.text = desc
         self.sourceLabel.text = source

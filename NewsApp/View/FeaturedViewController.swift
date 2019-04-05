@@ -13,7 +13,7 @@ class FeaturedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel = ViewModel()
-    var imageReuse: UIImage!
+    //var imageReuse: [UIImage]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,20 @@ class FeaturedViewController: UIViewController {
     func goToDetail() {
         
         let storyboard = UIStoryboard(name: "Third" , bundle: Bundle.main)
-        let mainTC = storyboard.instantiateViewController(withIdentifier: "MainTabController") as! UITabBarController
+        let detailVC = storyboard.instantiateViewController(withIdentifier: DetailViewController.identifier) as! DetailViewController
         
-        self.present(mainTC, animated: true, completion: nil)
+        //let detail = detailVC.topViewController as! DetailViewController
+        let index = tableView.indexPathForSelectedRow?.row
+        
+        detailVC.image = viewModel.articleHeadlines[index!].urlToImage
+        detailVC.titleText = viewModel.articleHeadlines[index!].title
+        detailVC.desc = viewModel.articleHeadlines[index!].description
+        detailVC.source = viewModel.articleHeadlines[index!].source.name
+        detailVC.author = viewModel.articleHeadlines[index!].author
+        detailVC.published = viewModel.articleHeadlines[index!].publishedAt
+        detailVC.content = viewModel.articleHeadlines[index!].content
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
 
@@ -46,7 +57,8 @@ extension FeaturedViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: DetailViewController.identifier, sender: self)
+        //imageReuse = tableView.indexPathForSelectedRow?.row
+        goToDetail()
     }
 }
 
@@ -67,7 +79,6 @@ extension FeaturedViewController: UITableViewDataSource {
             cell.collectionView.reloadData()
         case 1:
             cell.configure(article: viewModel.articleHeadlines[indexPath.row])
-            self.imageReuse = cell.imageViewer.image
         default:
             break
         }

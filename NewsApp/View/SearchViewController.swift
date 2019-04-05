@@ -25,12 +25,43 @@ class SearchViewController: UIViewController {
         // Do any additional setup after loading the view.
         viewModel.delegate = self
     }
+    
+    func goToDetail() {
+        
+        let storyboard = UIStoryboard(name: "Third" , bundle: Bundle.main)
+        let detailVC = storyboard.instantiateViewController(withIdentifier: DetailViewController.identifier) as! DetailViewController
+        
+        
+        let index = tableView.indexPathForSelectedRow?.row
+        switch isFilterSearch {
+        case true:
+            detailVC.image = viewModel.filteredArticle[index!].urlToImage
+            detailVC.titleText = viewModel.filteredArticle[index!].title
+            detailVC.desc = viewModel.filteredArticle[index!].description
+            detailVC.source = viewModel.filteredArticle[index!].source.name
+            detailVC.author = viewModel.filteredArticle[index!].author
+            detailVC.published = viewModel.filteredArticle[index!].publishedAt
+            detailVC.content = viewModel.filteredArticle[index!].content
+        case false:
+            detailVC.image = viewModel.articleEverything[index!].urlToImage
+            detailVC.titleText = viewModel.articleEverything[index!].title
+            detailVC.desc = viewModel.articleEverything[index!].description
+            detailVC.source = viewModel.articleEverything[index!].source.name
+            detailVC.author = viewModel.articleEverything[index!].author
+            detailVC.published = viewModel.articleEverything[index!].publishedAt
+            detailVC.content = viewModel.articleEverything[index!].content
+        }
+        
+        
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 
 }
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        goToDetail()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

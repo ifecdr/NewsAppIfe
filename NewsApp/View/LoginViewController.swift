@@ -17,6 +17,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var loginVIew: UIView!
+    @IBOutlet weak var loginStack: UIStackView!
+    @IBOutlet weak var loginViewTopC: NSLayoutConstraint!
+    @IBOutlet weak var loginViewBottomC: NSLayoutConstraint!
     
     var slide: [Slide] = []
     
@@ -29,6 +33,10 @@ class LoginViewController: UIViewController {
         setupSlideScrollView(slides: slide)
         
         editButtons()
+        
+        self.view.bringSubviewToFront(loginVIew)
+        self.view.bringSubviewToFront(loginStack)
+        
     }
     
     func editButtons() {
@@ -62,13 +70,10 @@ class LoginViewController: UIViewController {
             //layout sub views immediatley IF changes are pending
             scrollView.layoutIfNeeded()
             //If the current page is not less than or equal to 2, do nothing
+            
+            
         } else { return }
     }
-    
-    //prepare for segue
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier = "second"
-//    }
     
     @IBAction func registerAction(_ sender: UIButton) {
         guard let userName = username.text, let userPass = password.text, username.hasText, password.hasText else {
@@ -128,19 +133,22 @@ class LoginViewController: UIViewController {
             slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.size.width, height: scrollView.frame.size.height)
             scrollView.addSubview(slides[i])
         }
+     //   loginVIew.bringSubviewToFront(self.scrollView)
+        
+        
     }
     //TODO: Check for new Images
     func createSlides() -> [Slide] {
         let slide1: Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide1.imageViewer.image = UIImage(named: "news1")
+        slide1.imageViewer.image = UIImage(named: "newsbackg1")
         //slide1.imageViewer.contentMode = .center
         
         let slide2: Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide2.imageViewer.image = UIImage(named: "news2")
+        slide2.imageViewer.image = UIImage(named: "newsback2")
         //slide2.imageViewer.contentMode = .center
         
         let slide3: Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide3.imageViewer.image = UIImage(named: "news3")
+        slide3.imageViewer.image = UIImage(named: "newsback3")
         //slide3.imageViewer.contentMode = .scaleAspectFill
         
         return [slide1, slide2, slide3]
@@ -151,5 +159,21 @@ extension LoginViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
+    }
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //set the contraints of the loginView to move it up the view
+        print("editing started")
+        loginViewTopC.constant = 333
+        loginViewBottomC.constant = 357
+        
+        UIView.animate(withDuration: 0.9, delay: 0.0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        }) { (animateComplete) in
+            print("animation complete")
+        }
     }
 }
