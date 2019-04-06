@@ -19,6 +19,8 @@
 		02D94CAE2252E48E00BC533C /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D94CAD2252E48E00BC533C /* FeaturedTableViewCell.swift */; };
 		02D94CB22254E64A00BC533C /* FeaturedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D94CB12254E64A00BC533C /* FeaturedCollectionViewCell.swift */; };
 		5D00FDDF225595720076F8E2 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D00FDDE225595720076F8E2 /* SearchTableViewCell.swift */; };
+		5DA2EE352258419F00702BB1 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE342258419E00702BB1 /* ProfileTableViewCell.swift */; };
+		5DA2EE3B22585C3D00702BB1 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE3A22585C3D00702BB1 /* FirebaseService.swift */; };
 		5DAFC230224EDF1900B9B63F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAFC22F224EDF1900B9B63F /* AppDelegate.swift */; };
 		5DAFC232224EDF1900B9B63F /* SpashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAFC231224EDF1900B9B63F /* SpashViewController.swift */; };
 		5DAFC235224EDF1900B9B63F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAFC233224EDF1900B9B63F /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		02D94CB12254E64A00BC533C /* FeaturedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCollectionViewCell.swift; sourceTree = "<group>"; };
 		28C16DF491D261A920DBDD4A /* Pods-NewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5D00FDDE225595720076F8E2 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		5DA2EE342258419E00702BB1 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		5DA2EE3A22585C3D00702BB1 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		5DAFC22C224EDF1900B9B63F /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DAFC22F224EDF1900B9B63F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DAFC231224EDF1900B9B63F /* SpashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpashViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				5DAFC242224EDF6800B9B63F /* View */,
 				5DAFC245224EDFA000B9B63F /* Storyboards */,
 				5DAFC236224EDF3600B9B63F /* Assets.xcassets */,
+				5DAFC22F224EDF1900B9B63F /* AppDelegate.swift */,
 				5DAFC23B224EDF3600B9B63F /* Info.plist */,
 				02D94C9F2252496300BC533C /* GoogleService-Info.plist */,
 			);
@@ -144,6 +149,7 @@
 				5D00FDDE225595720076F8E2 /* SearchTableViewCell.swift */,
 				02CE911A2256524300BFB038 /* SearchFilteredCollectionViewCell.swift */,
 				02D94CA92252B72300BC533C /* ProfileViewController.swift */,
+				5DA2EE342258419E00702BB1 /* ProfileTableViewCell.swift */,
 				02CE911E2257848A00BFB038 /* DetailViewController.swift */,
 				5DAFC255224FF20800B9B63F /* Slide.swift */,
 			);
@@ -164,6 +170,7 @@
 				5DAFC248224EF3D000B9B63F /* NewsAPi.swift */,
 				5DAFC24A224EFD7D00B9B63F /* APIServices.swift */,
 				5DAFC24C224F099900B9B63F /* ImageDownloadService.swift */,
+				5DA2EE3A22585C3D00702BB1 /* FirebaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -171,7 +178,6 @@
 		5DAFC245224EDFA000B9B63F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5DAFC22F224EDF1900B9B63F /* AppDelegate.swift */,
 				5DAFC233224EDF1900B9B63F /* Main.storyboard */,
 				02D94CA322525C4800BC533C /* Second.storyboard */,
 				02CE911C22567C8700BFB038 /* Third.storyboard */,
@@ -331,6 +337,7 @@
 				5DAFC24D224F099900B9B63F /* ImageDownloadService.swift in Sources */,
 				5DAFC232224EDF1900B9B63F /* SpashViewController.swift in Sources */,
 				5DAFC252224FDE3D00B9B63F /* Constansts.swift in Sources */,
+				5DA2EE3B22585C3D00702BB1 /* FirebaseService.swift in Sources */,
 				02D94CAA2252B72300BC533C /* ProfileViewController.swift in Sources */,
 				02CE911B2256524300BFB038 /* SearchFilteredCollectionViewCell.swift in Sources */,
 				5DAFC230224EDF1900B9B63F /* AppDelegate.swift in Sources */,
@@ -340,6 +347,7 @@
 				02CE911F2257848A00BFB038 /* DetailViewController.swift in Sources */,
 				02D94CAE2252E48E00BC533C /* FeaturedTableViewCell.swift in Sources */,
 				02D94CA22252536C00BC533C /* ViewControllerExtension.swift in Sources */,
+				5DA2EE352258419F00702BB1 /* ProfileTableViewCell.swift in Sources */,
 				5D00FDDF225595720076F8E2 /* SearchTableViewCell.swift in Sources */,
 				02D94CA82252B6B900BC533C /* SearchViewController.swift in Sources */,
 				5DAFC24B224EFD7D00B9B63F /* APIServices.swift in Sources */,
