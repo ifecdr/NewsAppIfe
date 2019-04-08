@@ -116,7 +116,7 @@ extension ProfileViewController: UITableViewDataSource {
             cell.favCounter.text = String(fireViewModel.article.count)
             cell.imageViewer.image = UIImage(named: "news5")
             cell.imageViewer.layer.cornerRadius = cell.imageViewer.frame.size.width / 2
-            cell.emailLabel.text = "ifecdr@yahoo.com"
+            cell.emailLabel.text = UserDefaults.standard.value(forKey: Constants.username) as? String
         default:
             cell.settingLabel.text = ""
         }

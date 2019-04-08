@@ -130,6 +130,7 @@ class LoginViewController: UIViewController {
                 print("SignIn successful")
                 UserDefaults.standard.set(true, forKey: Constants.isLoginedIn)
                 self.performSegue(withIdentifier: "second", sender: self)
+                
             }
         }
     }
@@ -186,6 +187,10 @@ extension LoginViewController: UITextFieldDelegate {
         }) { (animateComplete) in
             print("animation complete")
         }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        loginViewTopC.constant = 57
+        loginViewBottomC.constant = 633
     }
 }
 
