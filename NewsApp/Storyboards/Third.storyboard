@@ -110,7 +110,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njc-KZ-cwg">
                                         <rect key="frame" x="169" y="-7" width="37" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button" image="grayheart"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="favoriteTapped:" destination="WtZ-vE-Gx7" eventType="touchUpInside" id="vmQ-JV-a41"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </view>
@@ -137,6 +140,7 @@
                         <outlet property="authorLabel" destination="1R6-Jx-Hai" id="8UL-un-Ms3"/>
                         <outlet property="contentLabel" destination="1hN-QL-ERV" id="K1q-TB-fQP"/>
                         <outlet property="descLabel" destination="YTd-CM-dta" id="1rC-aF-QkE"/>
+                        <outlet property="favoriteBut" destination="Njc-KZ-cwg" id="Vhj-Jr-4Cp"/>
                         <outlet property="imageViewer" destination="Q49-oA-jB8" id="edc-aG-uId"/>
                         <outlet property="publishedAtLabel" destination="Xde-Sn-KEj" id="wXt-Ci-2dH"/>
                         <outlet property="sourceLabel" destination="b2C-ZG-b5m" id="wKd-B3-vS4"/>
@@ -148,7 +152,4 @@
             <point key="canvasLocation" x="3631.884057971015" y="78.348214285714278"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="grayheart" width="225" height="225"/>
-    </resources>
 </document>

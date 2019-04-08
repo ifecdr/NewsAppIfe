@@ -12,22 +12,62 @@ import FirebaseAuth
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var favCount: UILabel!
     
+    var fireViewModel = FireViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        firebaseObserver()
+        fireViewModel.getFirebase()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        fireViewModel.getFirebase()
+    }
+    
+    @objc func firebaseUpdate() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func firebaseObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(firebaseUpdate), name: Notification.Name("updateFire"), object: nil)
     }
     
     @objc func signOutTapped() {
-        do {
-            try Auth.auth().signOut()
-            print("Signed Out")
-            view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        } catch {
-            print("Could not sign out")
+        let alert = UIAlertController(title: "Sign Out!", message: "Are you sure you want to sign out?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { [unowned self] action in
+            do {
+                try Auth.auth().signOut()
+                print("Signed Out")
+                if UserDefaults.standard.bool(forKey: Constants.didSignIn) == true {
+                    UserDefaults.standard.set(false, forKey: Constants.isLoginedIn)
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                } else {
+                    UserDefaults.standard.set(false, forKey: Constants.isLoginedIn)
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    self.view.window?.rootViewController? =  storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                }
+                
+            } catch {
+                print("Could not sign out")
+            }
         }
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
+        
         
         
     }
@@ -70,7 +110,10 @@ extension ProfileViewController: UITableViewDataSource {
         case 0:
             cell.signOutButton.addTarget(self, action: #selector(signOutTapped), for: .touchUpInside)
         case 1:
-            
+            let butImage = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
+            cell.favImg.image = butImage
+            cell.favImg.tintColor = .red
+            cell.favCounter.text = String(fireViewModel.article.count)
             cell.imageViewer.image = UIImage(named: "news5")
             cell.imageViewer.layer.cornerRadius = cell.imageViewer.frame.size.width / 2
             cell.emailLabel.text = "ifecdr@yahoo.com"

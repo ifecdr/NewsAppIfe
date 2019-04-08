@@ -14,12 +14,12 @@ protocol ViewModelDelegate: class {
 
 class ViewModel {
     
-    let countries = ["USA","Canada", "UK", "Ireland", "Australia", "Nigeria", "New Zealand", "South Africa"]
-    let countryCode = ["us", "ca", "gb", "ie", "au", "ng", "nz", "sa"]
+    let countries = ["USA","Canada", "UK", "Ireland", "Australia", "Nigeria", "New Zealand", "South Africa", "Favorite"]
+    let countryCode = ["us", "ca", "gb", "ie", "au", "ng", "nz", "sa", ""]
     
     //news source for filtering
-    let source = [ "cnn", "abc-news", "bbc-news" , "bloomberg" , "buzzfeed", "espn"]
-    let sourceImg = ["cnnImg", "abcImg", "bbcImg", "BloombergImg", "buzzImg", "espnImg"]
+    let source = ["Favorite", "cnn", "abc-news", "bbc-news" , "bloomberg" , "buzzfeed", "espn"]
+    let sourceImg = ["redHeart","cnnImg", "abcImg", "bbcImg", "BloombergImg", "buzzImg", "espnImg"]
     //create variable and call delegate after the variable is initialized to update view
     var articleHeadlines = [Article]() {
         didSet {

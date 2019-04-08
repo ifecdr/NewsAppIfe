@@ -15,6 +15,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var favCounter: UILabel!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var settingLabel: UILabel!
+    @IBOutlet weak var favImg: UIImageView!
     
     static let identifier = [ "profileButtonCell", "profileCell", "profileSettingsCell" ]
 }

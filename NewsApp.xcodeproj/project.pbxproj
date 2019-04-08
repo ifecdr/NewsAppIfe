@@ -21,6 +21,7 @@
 		5D00FDDF225595720076F8E2 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D00FDDE225595720076F8E2 /* SearchTableViewCell.swift */; };
 		5DA2EE352258419F00702BB1 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE342258419E00702BB1 /* ProfileTableViewCell.swift */; };
 		5DA2EE3B22585C3D00702BB1 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE3A22585C3D00702BB1 /* FirebaseService.swift */; };
+		5DA2EE3D2258F8D100702BB1 /* FireViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2EE3C2258F8D100702BB1 /* FireViewModel.swift */; };
 		5DAFC230224EDF1900B9B63F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAFC22F224EDF1900B9B63F /* AppDelegate.swift */; };
 		5DAFC232224EDF1900B9B63F /* SpashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAFC231224EDF1900B9B63F /* SpashViewController.swift */; };
 		5DAFC235224EDF1900B9B63F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAFC233224EDF1900B9B63F /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		5D00FDDE225595720076F8E2 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		5DA2EE342258419E00702BB1 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		5DA2EE3A22585C3D00702BB1 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		5DA2EE3C2258F8D100702BB1 /* FireViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireViewModel.swift; sourceTree = "<group>"; };
 		5DAFC22C224EDF1900B9B63F /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DAFC22F224EDF1900B9B63F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DAFC231224EDF1900B9B63F /* SpashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpashViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				5DAFC24E224F9DBC00B9B63F /* ViewModel.swift */,
+				5DA2EE3C2258F8D100702BB1 /* FireViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				5DAFC252224FDE3D00B9B63F /* Constansts.swift in Sources */,
 				5DA2EE3B22585C3D00702BB1 /* FirebaseService.swift in Sources */,
 				02D94CAA2252B72300BC533C /* ProfileViewController.swift in Sources */,
+				5DA2EE3D2258F8D100702BB1 /* FireViewModel.swift in Sources */,
 				02CE911B2256524300BFB038 /* SearchFilteredCollectionViewCell.swift in Sources */,
 				5DAFC230224EDF1900B9B63F /* AppDelegate.swift in Sources */,
 				5DAFC249224EF3D000B9B63F /* NewsAPi.swift in Sources */,

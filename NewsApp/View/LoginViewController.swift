@@ -34,8 +34,14 @@ class LoginViewController: UIViewController {
         
         editButtons()
         
+        
+        
         self.view.bringSubviewToFront(loginVIew)
         self.view.bringSubviewToFront(loginStack)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
     }
     
@@ -81,6 +87,7 @@ class LoginViewController: UIViewController {
             print("Could Not Verify User Details")
             return
         }
+        UserDefaults.standard.set(userName.toFire(), forKey: Constants.username)
         
         //create a new user and add the user to the firebase auth
         Auth.auth().createUser(withEmail: userName, password: userPass) { (result, error) in
@@ -93,8 +100,11 @@ class LoginViewController: UIViewController {
             }
             
             if let _ = result {
+                //create new user for firebase and go to home screen
                 print("Account Created")
-                //self.goToHome()
+                FireService.shared.create(user: userName.toFire())
+                UserDefaults.standard.set(true, forKey: Constants.isLoginedIn)
+                self.performSegue(withIdentifier: "second", sender: self)
                 
             }
         }
@@ -106,6 +116,7 @@ class LoginViewController: UIViewController {
             print("Could Not Verify User Details")
             return
         }
+        UserDefaults.standard.set(userName.toFire(), forKey: Constants.username)
         
         //authenticate the user
         Auth.auth().signIn(withEmail: userName, password: userPass) { (result, error) in
@@ -117,7 +128,7 @@ class LoginViewController: UIViewController {
             
             if let _ = result {
                 print("SignIn successful")
-                //self.goToHome()
+                UserDefaults.standard.set(true, forKey: Constants.isLoginedIn)
                 self.performSegue(withIdentifier: "second", sender: self)
             }
         }
@@ -175,5 +186,18 @@ extension LoginViewController: UITextFieldDelegate {
         }) { (animateComplete) in
             print("animation complete")
         }
+    }
+}
+
+// create an extension to string to
+//to remove the ooccurences of some characters
+extension String {
+    func toFire() -> String {
+        let charsToReplace = [".", "#", "$", "[", "]"]
+        var fireString = self
+        for char in charsToReplace {
+            fireString = fireString.replacingOccurrences(of: char, with: "")
+        }
+        return fireString
     }
 }

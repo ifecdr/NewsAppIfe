@@ -13,15 +13,25 @@ class FeaturedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel = ViewModel()
+    let fireViewModel = FireViewModel()
+    var isfavorite : Bool = false
     //var imageReuse: [UIImage]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.rowHeight = UITableView.automaticDimension
+        //tableView.rowHeight = UITableView.automaticDimension
         viewModel.delegate = self
         viewModel.getHeadlines(viewModel.countryCode.first!)
+        
+        firebaseObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        fireViewModel.getFirebase()
     }
     
     
@@ -33,17 +43,43 @@ class FeaturedViewController: UIViewController {
         //let detail = detailVC.topViewController as! DetailViewController
         let index = tableView.indexPathForSelectedRow?.row
         
-        detailVC.image = viewModel.articleHeadlines[index!].urlToImage
-        detailVC.titleText = viewModel.articleHeadlines[index!].title
-        detailVC.desc = viewModel.articleHeadlines[index!].description
-        detailVC.source = viewModel.articleHeadlines[index!].source.name
-        detailVC.author = viewModel.articleHeadlines[index!].author
-        detailVC.published = viewModel.articleHeadlines[index!].publishedAt
-        detailVC.content = viewModel.articleHeadlines[index!].content
+        if isfavorite {
+            detailVC.id = fireViewModel.article[index!].source.id
+            detailVC.url = fireViewModel.article[index!].url
+            detailVC.image = fireViewModel.article[index!].urlToImage
+            detailVC.titleText = fireViewModel.article[index!].title
+            detailVC.desc = fireViewModel.article[index!].description
+            detailVC.source = fireViewModel.article[index!].source.name
+            detailVC.author = fireViewModel.article[index!].author
+            detailVC.published = fireViewModel.article[index!].publishedAt
+            detailVC.content = fireViewModel.article[index!].content
+            detailVC.isFavorite = true
+        } else {
+            detailVC.id = viewModel.articleHeadlines[index!].source.id
+            detailVC.url = viewModel.articleHeadlines[index!].url
+            detailVC.image = viewModel.articleHeadlines[index!].urlToImage
+            detailVC.titleText = viewModel.articleHeadlines[index!].title
+            detailVC.desc = viewModel.articleHeadlines[index!].description
+            detailVC.source = viewModel.articleHeadlines[index!].source.name
+            detailVC.author = viewModel.articleHeadlines[index!].author
+            detailVC.published = viewModel.articleHeadlines[index!].publishedAt
+            detailVC.content = viewModel.articleHeadlines[index!].content
+        }
+        
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
+    @objc func firebaseUpdate() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func firebaseObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(firebaseUpdate), name: Notification.Name("updateFire"), object: nil)
+    }
 
 }
 
@@ -53,7 +89,21 @@ extension FeaturedViewController: UITableViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.getHeadlines(viewModel.countryCode[indexPath.row])
+//        for i in 0..<viewModel.countries.count {
+//            if i == indexPath.row {
+//                collectionView.cellForItem(at: indexPath)?.backgroundColor = .orange //UIColor.orange
+//            } else {
+//                collectionView.cellForItem(at: indexPath)?.backgroundColor = .white
+//            }
+//        }
+        
+        if indexPath.row == 8 {
+            self.isfavorite = true
+            fireViewModel.getFirebase()
+        } else {
+            self.isfavorite = false
+            viewModel.getHeadlines(viewModel.countryCode[indexPath.row])
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -67,8 +117,18 @@ extension FeaturedViewController: UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let firstSection = 1 //viewModel.articleHeadlines.isEmpty ? 0 : 1
-        return section == 0 ? firstSection : viewModel.articleHeadlines.count
+//        let firstSection = 1 //viewModel.articleHeadlines.isEmpty ? 0 : 1
+//        return section == 0 ? firstSection : viewModel.articleHeadlines.count
+        switch section {
+        case 0:
+            return 1
+        default:
+            if isfavorite {
+                return fireViewModel.article.count
+            } else {
+                return viewModel.articleHeadlines.count
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +138,12 @@ extension FeaturedViewController: UITableViewDataSource {
         case 0:
             cell.collectionView.reloadData()
         case 1:
-            cell.configure(article: viewModel.articleHeadlines[indexPath.row])
+            if isfavorite {
+                cell.configure(article: fireViewModel.article[indexPath.row])
+            } else {
+                cell.configure(article: viewModel.articleHeadlines[indexPath.row])
+            }
+            
         default:
             break
         }

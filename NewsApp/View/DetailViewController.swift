@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class DetailViewController: UIViewController {
 
@@ -17,14 +18,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var publishedAtLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var favoriteBut: UIButton!
     
+    var id: String?
     var titleText: String!
     var desc: String!
     var source: String!
-    var author: String!
+    var author: String?
     var published: String!
-    var content: String!
+    var content: String?
+    var url: String?
     var image: String!
+    var isFavorite: Bool = false
+    //var butImage: UIImage!
     
     let viewModel = ViewModel()
     
@@ -58,7 +64,38 @@ class DetailViewController: UIViewController {
         self.authorLabel.text = author
         self.publishedAtLabel.text = published
         self.contentLabel.text = content
+        
+        let butImage = UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate)
+        favoriteBut.setImage(butImage, for: .normal)
+        favoriteBut.tintColor = .gray
+        
+        if isFavorite {
+            self.favoriteBut.tintColor = .red
+        } else {
+            
+        }
+        
+        
     }
     
-
+    @IBAction func favoriteTapped(_ sender: UIButton) {
+        let article = Article(source: Source(id: self.id, name: self.source),
+                             author: self.author ?? "",
+                             title: self.titleText,
+                             description: self.desc,
+                             url: self.url ?? "",
+                             urlToImage: self.image,
+                             publishedAt: self.published,
+                             content: self.content ?? "")
+        
+        
+        if !isFavorite {
+            FireService.shared.save(article)
+            self.favoriteBut.tintColor = .red
+        } else {
+            self.favoriteBut.tintColor = .gray
+            FireService.shared.remove(article)
+        }
+    }
+    
 }

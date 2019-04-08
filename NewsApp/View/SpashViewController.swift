@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SpashViewController: UIViewController {
 
@@ -18,11 +19,15 @@ class SpashViewController: UIViewController {
         
         //get a reference to the storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboardSecond = UIStoryboard(name: "Second", bundle: Bundle.main)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        if UserDefaults.standard.bool(forKey: Constants.isLoginedIn) {
-            
+        if  Auth.auth().currentUser != nil && UserDefaults.standard.value(forKey: Constants.isLoginedIn) != nil {
+            UserDefaults.standard.set(false, forKey: Constants.didSignIn)
+            let mainVC = storyboardSecond.instantiateViewController(withIdentifier: "SecondStoryboardTab") as! UITabBarController
+            appDelegate.window?.rootViewController = mainVC
         } else {
+            UserDefaults.standard.set(true, forKey: Constants.didSignIn)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             appDelegate.window?.rootViewController = loginVC
         }
