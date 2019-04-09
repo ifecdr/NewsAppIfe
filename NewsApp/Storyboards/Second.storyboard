@@ -89,10 +89,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="320"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jaA-3h-GeV">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="jaA-3h-GeV">
                                                     <rect key="frame" x="5" y="0.0" width="404" height="259"/>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="FK8-wV-axf">
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="FK8-wV-axf">
                                                     <rect key="frame" x="10" y="264" width="394" height="46"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNe-oT-DXc">
@@ -115,6 +115,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jaA-3h-GeV" secondAttribute="bottom" constant="61" id="1ql-64-AnA"/>
                                             <constraint firstAttribute="trailing" secondItem="FK8-wV-axf" secondAttribute="trailing" constant="10" id="K8F-1M-kjk"/>
                                             <constraint firstAttribute="trailing" secondItem="jaA-3h-GeV" secondAttribute="trailing" constant="5" id="VuK-oB-h5S"/>
                                             <constraint firstItem="FK8-wV-axf" firstAttribute="leading" secondItem="gG7-hC-omI" secondAttribute="leading" constant="10" id="h0g-8E-5CN"/>

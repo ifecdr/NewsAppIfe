@@ -21,18 +21,20 @@ class FeaturedViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        tableView.rowHeight = UITableView.automaticDimension
+        //tableView.rowHeight = UITableView.automaticDimension
+        
         viewModel.delegate = self
         viewModel.getHeadlines(viewModel.countryCode.first!)
         fireViewModel.getFirebase()
         firebaseObserver()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        //tableView.rowHeight = UITableView.automaticDimension
-        fireViewModel.getFirebase()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//
+//        tableView.reloadData()
+//        //fireViewModel.getFirebase()
+//    }
     
     
     func goToDetail() {

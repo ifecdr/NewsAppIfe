@@ -17,6 +17,8 @@ final class FireService {
     
     let userRef = Database.database().reference(withPath: UserDefaults.standard.value(forKey: Constants.username) as! String)
     lazy var ref = userRef.child(Constants.article)
+    
+    let fireViewModel = FireViewModel()
     //CRUD Operation to firebase
     
     func save(_ article: Article) {
@@ -39,6 +41,7 @@ final class FireService {
     
     func remove(_ article: Article) {
         ref.child(article.source.id!).removeValue()
+        //fireViewModel.getFirebase()
     }
     
     func get(firebase completion: @escaping ([Article]) -> ()) {
